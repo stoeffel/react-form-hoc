@@ -1,0 +1,143 @@
+{
+  "name": "react-redux-bp",
+  "version": "1.0.0",
+  "description": "## TOC",
+  "main": "index.js",
+  "scripts": {
+    "?info": "Display information about the scripts.",
+    "info": "npm-scripts-info",
+    "?test": "Runs all unittests and lints your code using standard",
+    "test": "npm run test:unit && npm run test:lint",
+    "?test:watch": "Watchs for file changes in `src`/`tests` and runs npm test",
+    "test:watch": "watch 'npm test' src tests",
+    "?test:unit": "Runs all unit tests with ava",
+    "test:unit": "ava",
+    "?test:coverage": "Displays the code coverage of your app",
+    "test:coverage": "nyc -r=text -r=html npm test",
+    "?coverage:report": "Reports the coverage to codecov",
+    "coverage:report": "nyc -r=lcov npm run test:unit > coverage.lcov && codecov",
+    "?test:lint": "Lints your code",
+    "test:lint": "standard",
+    "?format": "Auto format all your files",
+    "format": "standard-format -w",
+    "?build": "Builds your app for production",
+    "build": "npm run build:prod",
+    "?build:dev": "Builds your app for development",
+    "build:dev": "npm run build:webpack:dev",
+    "?build:prod": "Builds your app for production",
+    "build:prod": "npm run build:webpack:prod",
+    "?build:webpack:dev": "Webpack dev build",
+    "build:webpack:dev": "webpack -d",
+    "?build:webpack:prod": "Webpack prod build",
+    "build:webpack:prod": "webpack -p",
+    "?serve": "Serves your app for development",
+    "serve": "npm run serve:dev",
+    "?serve:dev": "Serves your app for development",
+    "serve:dev": "npm run copy-to-build && webpack-dev-server",
+    "?copy-to-build": "Copies files to the build folder for serving.",
+    "copy-to-build": "cp ./index.html ./build && cp -r ./fixtures ./build/fixtures",
+    "?toc": "Generates TOC",
+    "toc": "roadmarks"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "transform-regenerator"
+    ]
+  },
+  "ava": {
+    "files": [
+      "tests/**/*.test.js"
+    ],
+    "require": [
+      "babel-register",
+      "babel-polyfill",
+      "./tests/setup.js"
+    ],
+    "babel": "inherit"
+  },
+  "standard": {
+    "ignore": [
+      "/build/"
+    ],
+    "globals": [
+      "__DEV__",
+      "__TESTING__"
+    ],
+    "rules": {
+      "arrow-parens": 0,
+      "babel/arrow-parens": 0
+    },
+    "parser": "babel-eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stoeffel/react-redux-bp.git"
+  },
+  "author": "Christoph Hermann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stoeffel/react-redux-bp/issues"
+  },
+  "homepage": "https://github.com/stoeffel/react-redux-bp#readme",
+  "dependencies": {
+    "classnames": "^2.2.4",
+    "create-constants": "^0.1.0",
+    "debug": "^2.2.0",
+    "isomorphic-fetch": "^2.2.1",
+    "material-ui": "^0.15.0-beta.2",
+    "partial.lenses": "^3.3.1",
+    "ramda": "^0.21.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-form-hoc": "0.0.5",
+    "react-inspector": "^1.0.0-alpha.3",
+    "react-prism": "^3.2.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.3.0",
+    "react-router-redux": "^4.0.2",
+    "recompose": "^0.17.0",
+    "redux": "^3.5.1",
+    "redux-actions": "^0.9.1",
+    "redux-form": "^5.1.3",
+    "redux-freeze": "^0.1.3",
+    "redux-localstorage": "^1.0.0-rc4",
+    "redux-localstorage-debounce": "^0.1.0",
+    "redux-localstorage-filter": "^0.1.1",
+    "redux-persist": "^2.0.1",
+    "redux-queue-offline": "^0.4.2",
+    "redux-saga": "^0.10.0",
+    "syntux": "^0.4.3"
+  },
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "babel-core": "^6.7.7",
+    "babel-eslint": "^6.0.3",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-regenerator": "^6.6.5",
+    "babel-polyfill": "^6.7.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.7.2",
+    "codecov": "^1.0.1",
+    "enzyme": "^2.2.0",
+    "jsdom": "^8.4.0",
+    "minimist": "^1.2.0",
+    "npm-scripts-info": "^0.3.6",
+    "nyc": "^6.4.0",
+    "react-addons-test-utils": "^15.0.1",
+    "redux-mock-store": "^1.0.2",
+    "redux-saga-test": "0.0.1",
+    "roadmarks": "^1.6.3",
+    "standard": "^6.0.8",
+    "standard-format": "^2.1.1",
+    "watch": "^0.17.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
