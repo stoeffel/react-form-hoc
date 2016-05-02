@@ -130,4 +130,25 @@ describe('React-Form-HOC', () => {
       lastName: 'Hermann'
     }, true])
   })
+
+  it('should reset when new initialValues are passed', () => {
+    const Formed = formHOC({
+      fields,
+      validate: (key, value) => {
+        switch (key) {
+          case 'firstName':
+            return value && value.length ? null : 'required'
+          default: null
+        }
+      }
+    })(MyForm)
+    const wrapper = mount(<Formed initialValues={initialValues} />)
+    const inputs = wrapper.find('input')
+    const input = inputs.at(0)
+    expect(input.props().value).toBe('Christoph')
+    wrapper.setProps({ initialValues: {
+      firstName: 'foo'
+    }})
+    expect(input.props().value).toBe('foo')
+  })
 })

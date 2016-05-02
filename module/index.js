@@ -36,8 +36,10 @@ export default function reactFormHoc (options = {}) {
       },
 
       getInitialState () {
-        const { initialValues } = this.props
+        return this.stateFromProps(this.props)
+      },
 
+      stateFromProps ({ initialValues }) {
         return fields.reduce((acc, name) => ({
           ...acc,
           values: initialValues,
@@ -56,6 +58,12 @@ export default function reactFormHoc (options = {}) {
         }), {
           fields: {}
         })
+      },
+
+      componentWillReceiveProps (nextProps) {
+        if (nextProps.initialValues !== this.props.initialValues) {
+          this.setState(this.stateFromProps(nextProps))
+        }
       },
 
       allValid (state) {
