@@ -13,7 +13,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "build": "babel module --out-dir ./",
+    "build": "babel module --out-dir .",
     "prepublish": "npm run build",
     "develop": "nodangel --ignore node_modules --watch test --watch module --exec 'npm run test'",
     "test": "standard && nyc --require babel-core/register mocha",
