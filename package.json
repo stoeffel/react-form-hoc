@@ -14,13 +14,12 @@
   },
   "scripts": {
     "build": "babel module --out-dir .",
-    "prepublish": "npm run build",
     "develop": "nodangel --ignore node_modules --watch test --watch module --exec 'npm run test'",
     "test": "standard && nyc --require babel-core/register mocha",
     "codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "release:major": "xyz --repo git@github.com:stoeffel/react-form-hoc.git --increment major",
-    "release:minor": "xyz --repo git@github.com:stoeffel/react-form-hoc.git --increment minor",
-    "release:patch": "xyz --repo git@github.com:stoeffel/react-form-hoc.git --increment patch"
+    "release:major": "npm run build && xyz --repo git@github.com:stoeffel/react-form-hoc.git --increment major",
+    "release:minor": "npm run build && xyz --repo git@github.com:stoeffel/react-form-hoc.git --increment minor",
+    "release:patch": "npm run build && xyz --repo git@github.com:stoeffel/react-form-hoc.git --increment patch"
   },
   "files": [
     "index.js"
