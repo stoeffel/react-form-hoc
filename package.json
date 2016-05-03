@@ -37,7 +37,9 @@
       "before"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "shallowequal": "^0.2.2"
+  },
   "devDependencies": {
     "babel": "6.5.1",
     "babel-cli": "6.5.1",

@@ -1,4 +1,5 @@
 import React, { PropTypes as P } from 'react'
+import shallowequal from 'shallowequal'
 
 const all = (xs, fn) => !!Object.keys(xs).reduce((acc, x) => {
   return acc && fn(xs[x])
@@ -63,7 +64,7 @@ export default function reactFormHoc (options = {}) {
 
       componentWillReceiveProps (next) {
         const { initialValues, touchAll } = this.props
-        if (next.initialValues !== initialValues) {
+        if (!shallowequal(next.initialValues, initialValues)) {
           this.setState(this.stateFromProps(next))
         }
         if (next.touchAll !== touchAll) {
