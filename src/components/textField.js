@@ -5,5 +5,5 @@ import { ObjectInspector } from 'react-inspector'
 export default ({ label, error, touched, ...props }) =>
   <div>
     <TextField {...props} hintText={label} errorText={ touched && error} />
-    <ObjectInspector data={{ label, error, ...props }} />
+    <ObjectInspector data={{ label, error, touched, ...props }} />
   </div>
