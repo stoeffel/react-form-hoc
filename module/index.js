@@ -63,9 +63,25 @@ export default function reactFormHoc (options = {}) {
 
       componentWillReceiveProps (next) {
         const { initialValues, touchAll } = this.props
-        if (next.initialValues !== initialValues || next.touchAll !== touchAll) {
+        if (next.initialValues !== initialValues) {
           this.setState(this.stateFromProps(next))
         }
+        if (next.touchAll !== touchAll) {
+          this.touchAll()
+        }
+      },
+
+      touchAll () {
+        this.setState({
+          ...this.state,
+          fields: fields.reduce((acc, name) => ({
+            ...acc,
+            [name]: {
+              ...acc[name],
+              touched: true
+            }
+          }), this.state.fields)
+        })
       },
 
       allValid (state) {
