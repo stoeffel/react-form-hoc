@@ -31,7 +31,8 @@ export default function reactFormHoc (options = {}) {
         return {
           onChange: () => {},
           initialValues: {},
-          validate: false
+          validate: false,
+          touchAll: false
         }
       },
 
@@ -39,7 +40,7 @@ export default function reactFormHoc (options = {}) {
         return this.stateFromProps(this.props)
       },
 
-      stateFromProps ({ initialValues }) {
+      stateFromProps ({ initialValues, touchAll }) {
         return fields.reduce((acc, name) => ({
           ...acc,
           values: initialValues,
@@ -48,7 +49,7 @@ export default function reactFormHoc (options = {}) {
             [name]: {
               name,
               error: validate(name, initialValues[name]),
-              touched: false,
+              touched: touchAll,
               value: initialValues[name],
               initialValue: initialValues[name],
               onChange: this.handleChanges(name),
@@ -60,9 +61,10 @@ export default function reactFormHoc (options = {}) {
         })
       },
 
-      componentWillReceiveProps (nextProps) {
-        if (nextProps.initialValues !== this.props.initialValues) {
-          this.setState(this.stateFromProps(nextProps))
+      componentWillReceiveProps (next) {
+        const { initialValues, touchAll } = this.props
+        if (next.initialValues !== initialValues || next.touchAll !== touchAll) {
+          this.setState(this.stateFromProps(next))
         }
       },
 

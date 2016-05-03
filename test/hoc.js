@@ -151,4 +151,26 @@ describe('React-Form-HOC', () => {
     }})
     expect(input.props().value).toBe('foo')
   })
+
+  it('should touch all fields', () => {
+    const Formed = formHOC({
+      fields,
+      validate: (key, value) => {
+        switch (key) {
+          case 'firstName':
+            return value && value.length ? null : 'required'
+          default: null
+        }
+      }
+    })(MyForm)
+    const wrapper = mount(<Formed initialValues={initialValues} />)
+    const inputs = wrapper.find('input')
+    const one = inputs.at(0)
+    const two = inputs.at(1)
+    expect(one.props().touched).toBe(false)
+    expect(two.props().touched).toBe(false)
+    wrapper.setProps({ touchAll: true })
+    expect(one.props().touched).toBe(true)
+    expect(two.props().touched).toBe(true)
+  })
 })
