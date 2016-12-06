@@ -28,7 +28,7 @@ const MyForm = ({ fields }) => (
 )
 
 const Formed = formHOC({
-  fiels: ['firstName', 'lastName'],
+  fields: ['firstName', 'lastName'],
   validate: (key, value) => {
     switch (key) {
       case 'firstName':
